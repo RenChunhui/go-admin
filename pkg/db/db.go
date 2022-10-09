@@ -3,6 +3,7 @@ package db
 import (
 	"fmt"
 
+	"github.com/renchunhui/go-admin/pkg/config"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )
@@ -16,7 +17,13 @@ func Get() *gorm.DB {
 
 // 连接
 func Open() error {
-	dsn := fmt.Sprintf("")
+	dsn := fmt.Sprintf("%s:%s@tcp(%s)/%s?charset=%s&parseTime=True&loc=Local",
+		config.Database.Username,
+		config.Database.Password,
+		config.Database.Host,
+		config.Database.Name,
+		config.Database.Charset,
+	)
 	mydb, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
 
 	db = mydb

@@ -4,6 +4,7 @@ import (
 	"fmt"
 
 	"github.com/renchunhui/go-admin/pkg/config"
+	"github.com/renchunhui/go-admin/pkg/db"
 )
 
 func init() {
@@ -13,7 +14,13 @@ func init() {
 		return
 	}
 
-	fmt.Printf(":%d", config.Http.Port)
+	err = db.Open()
+
+	if err != nil {
+		return
+	}
+
+	fmt.Printf("database %+v\n", config.Database)
 }
 
 func main() {

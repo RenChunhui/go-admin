@@ -16,6 +16,7 @@ type databaseSchema struct {
 	Password string
 	Name     string
 	Host     string
+	Charset  string
 }
 
 type rootSchema struct {
@@ -31,17 +32,13 @@ var (
 
 func NewConfig() error {
 	viper.AddConfigPath("configs")
-	viper.SetConfigType("yaml")
 	viper.SetConfigName(os.Getenv("GIN_MODE"))
+	viper.SetConfigType("yaml")
 	viper.ReadInConfig()
 
-	Http = &httpSchema{}
-	Database = &databaseSchema{}
-	Root = &rootSchema{}
-
-	viper.UnmarshalKey("http", Http)
-	viper.UnmarshalKey("database", Database)
-	viper.UnmarshalKey("root", Root)
+	viper.UnmarshalKey("Http", &Http)
+	viper.UnmarshalKey("Database", &Database)
+	viper.UnmarshalKey("Root", &Root)
 
 	fmt.Printf("\033[1;32m%s\033[0m", "✔ 配置文件读取成功\n")
 

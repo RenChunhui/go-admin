@@ -1,15 +1,16 @@
 # HTTP 配置
-http:
-  port: 8080
+Http:
+  Port: 8080
 
 # 数据库配置
-database:
-  username: gorm
-  password: mysql123456
-  name: gorm
-  host: 127.0.0.1:3306
+Database:
+  Username: gorm
+  Password: mysql123456
+  Name: gorm
+  Host: 127.0.0.1:3306
+  Charset: utf8
 
 # 默认管理员
-root:
-  username: admin
-  password: admin
+Root:
+  Username: admin
+  Password: admin
