@@ -8,6 +8,7 @@ Database:
   Password: mysql123456
   Name: gorm
   Host: 127.0.0.1:3306
+  Prefix:
   Charset: utf8
 
 # 默认管理员

@@ -15,4 +15,11 @@ func New() {
 		user := model.User{}
 		db.Get().Create(&user)
 	}
+
+	hasRole := db.Get().Migrator().HasTable(&model.Role{})
+
+	if !hasRole {
+		role := model.Role{}
+		db.Get().Create(&role)
+	}
 }

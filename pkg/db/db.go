@@ -11,7 +11,7 @@ import (
 var db *gorm.DB
 
 // 获取实例
-func Get() *gorm.DB {
+func GetInstance() *gorm.DB {
 	return db
 }
 

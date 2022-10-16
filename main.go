@@ -2,9 +2,11 @@ package main
 
 import (
 	"fmt"
+	"net/http"
+	"time"
 
+	"github.com/renchunhui/go-admin/internal/router"
 	"github.com/renchunhui/go-admin/pkg/config"
-	"github.com/renchunhui/go-admin/pkg/db"
 )
 
 func init() {
@@ -14,15 +16,24 @@ func init() {
 		return
 	}
 
-	err = db.Open()
+	// err = db.Open()
 
-	if err != nil {
-		return
-	}
+	// if err != nil {
+	// 	return
+	// }
 
-	fmt.Printf("database %+v\n", config.Database)
+	// fmt.Printf("database %+v\n", config.Database)
 }
 
 func main() {
+	r := router.NewRouter()
+	s := &http.Server{
+		Addr:           fmt.Sprintf(":%d", config.Http.Port),
+		Handler:        r,
+		ReadTimeout:    10 * time.Second,
+		WriteTimeout:   10 * time.Second,
+		MaxHeaderBytes: 1 << 20,
+	}
 
+	s.ListenAndServe()
 }

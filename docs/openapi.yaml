@@ -1,0 +1,38 @@
+openapi: 3.1.0
+info:
+  version: 1.0.0
+  title: Go Admin
+  content:
+    email: renchunhui2008@gmail.com
+  license:
+    name: Apache 2.0
+  description: Go Admin
+tags:
+  - name: Account
+    description: 账号管理
+  - name: Users
+    description: 用户管理
+  - name: Roles
+    description: 角色管理
+  - name: Permission
+    description: 权限管理
+  - name: Menus
+    description: 菜单管理
+  - name: Tags
+    description: 标签管理
+  - name: Files
+    description: 文件管理
+  - name: Categories
+    description: 类别管理
+  - name: Notifications
+    description: 消息管理
+  - name: Dictionary
+    description: 数据字典
+servers:
+  - url: https://localhost/api
+paths:
+  '/users':
+    $ref: paths/users/users.yaml
+  '/users/{id}':
+    $ref: paths/users/users@{id}.yaml
+

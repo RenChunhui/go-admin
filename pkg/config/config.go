@@ -12,15 +12,24 @@ type httpSchema struct {
 }
 
 type databaseSchema struct {
+	// 数据库名
+	Name string
+	// 用户名
 	Username string
+	// 密码
 	Password string
-	Name     string
-	Host     string
-	Charset  string
+	// 主机
+	Host string
+	// 数据表前缀
+	Prefix string
+	// 编码
+	Charset string
 }
 
 type rootSchema struct {
+	// 管理员账号
 	Username string
+	// 管理员密码
 	Password string
 }
 
