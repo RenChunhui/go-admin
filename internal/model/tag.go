@@ -1,6 +1,9 @@
 package model
 
+import "gorm.io/datatypes"
+
 type Tag struct {
-	ID   uint   `json:"id" gorm:"primarykey"`
-	Name string `json:"name" gorm:"comment:'名称'"`
+	ID   uint           `json:"id" gorm:"primarykey"`
+	Name string         `json:"name" gorm:"comment:'名称'"`
+	Meta datatypes.JSON `json:"meta" gorm:"type:json;comment:'扩展对象'"`
 }

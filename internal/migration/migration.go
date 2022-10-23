@@ -7,19 +7,37 @@ import (
 )
 
 func New() {
-	hasUser := db.Get().Migrator().HasTable(&model.User{})
+	hasUser := db.GetInstance().Migrator().HasTable(&model.User{})
 
+	// User table
 	if !hasUser {
-		db.Get().AutoMigrate(&model.User{Username: config.Root.Username, Password: config.Root.Password})
+		db.GetInstance().AutoMigrate(&model.User{})
 
-		user := model.User{}
-		db.Get().Create(&user)
+		user := model.User{Username: config.Root.Username, Password: config.Root.Password}
+		db.GetInstance().Create(&user)
 	}
 
-	hasRole := db.Get().Migrator().HasTable(&model.Role{})
+	// Role table
+	hasRole := db.GetInstance().Migrator().HasTable(&model.Role{})
 
 	if !hasRole {
+		db.GetInstance().AutoMigrate(&model.Role{Name: "admin"})
+
 		role := model.Role{}
-		db.Get().Create(&role)
+		db.GetInstance().Create(&role)
+	}
+
+	// Tag
+	hasTag := db.GetInstance().Migrator().HasTable(&model.Tag{})
+
+	if !hasTag {
+		db.GetInstance().AutoMigrate(&model.Tag{})
+	}
+
+	// Category
+	hasCategory := db.GetInstance().Migrator().HasTable(&model.Category{})
+
+	if !hasCategory {
+		db.GetInstance().AutoMigrate(&model.Category{})
 	}
 }
