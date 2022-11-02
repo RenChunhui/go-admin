@@ -25,7 +25,6 @@ func init() {
 	}
 
 	migration.New()
-	fmt.Printf("database %+v\n", config.Database)
 }
 
 func main() {

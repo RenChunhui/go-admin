@@ -4,6 +4,7 @@ import (
 	"fmt"
 
 	"github.com/renchunhui/go-admin/pkg/config"
+	"github.com/renchunhui/go-admin/pkg/db"
 	"gorm.io/datatypes"
 )
 
@@ -19,3 +20,9 @@ type User struct {
 func (u User) TableName() string {
 	return fmt.Sprintf("%suser", config.Database.Prefix)
 }
+
+func (u User) Create() {
+	db.GetInstance().Create(&u)
+}
+
+func (u User) Read() {}

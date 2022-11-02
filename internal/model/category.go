@@ -1,6 +1,11 @@
 package model
 
-import "gorm.io/datatypes"
+import (
+	"fmt"
+
+	"github.com/renchunhui/go-admin/pkg/config"
+	"gorm.io/datatypes"
+)
 
 type Category struct {
 	ID   uint           `json:"id" gorm:"primarykey"`
@@ -9,5 +14,5 @@ type Category struct {
 }
 
 func (c Category) TableName() string {
-	return "category"
+	return fmt.Sprintf("%scategory", config.Database.Prefix)
 }
