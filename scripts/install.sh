@@ -17,6 +17,15 @@ if ! command -v dasel >/dev/null 2>&1; then
 	echo ${GREEN}✔${RESET} "dasel"
 fi
 
-DB_NAME=$(dasel 'select' -f configs/debug.yaml "database.name")
-DB_USERNAME=$(dasel 'select' -f configs/debug.yaml "database.username")
-DB_PASSWORD=$(dasel 'select' -f configs/debug.yaml "database.password")
+DB_NAME=$(dasel -f configs/debug.yaml "Database.Name")
+DB_USERNAME=$(dasel -f configs/debug.yaml "Database.Username")
+DB_PASSWORD=$(dasel -f configs/debug.yaml "Database.Password")
+
+# 创建数据库
+Q1="CREATE DATABASE IF NOT EXISTS $DB_NAME;"
+Q2="CREATE USER '$DB_USERNAME'@'localhost' IDENTIFIED BY '$DB_PASSWORD'"
+Q3="GRANT ALL ON *.* TO '$DB_USERNAME'@'localhost';"
+Q4="FLUSH PRIVILEGES;"
+SQL="${Q1}${Q2}${Q3}${Q4}"
+
+mysql -u root -e "$SQL"

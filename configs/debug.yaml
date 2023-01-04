@@ -4,8 +4,8 @@ Http:
 
 # 数据库配置
 Database:
-  Username: root
-  Password: Rch~500235
+  Username: gorm
+  Password: gorm123456
   Name: gorm
   Host: 127.0.0.1:3306
   Prefix: db_
